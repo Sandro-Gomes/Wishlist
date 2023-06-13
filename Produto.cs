@@ -13,6 +13,8 @@ namespace Wishlist
         public double ValorMin { get; private set; }
         public double ValorMax { get; private set; }
 
+        public Produto() { }    
+        
         public Produto(string descricao, double valorMin, double valorMax)
         {
             Descricao = descricao;

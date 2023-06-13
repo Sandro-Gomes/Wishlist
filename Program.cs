@@ -13,7 +13,7 @@ namespace Wishlist
             {
                 
                 Console.Clear();
-                Console.WriteLine("Menu simples:");
+                Console.WriteLine("Wishlist Personalizada:");
                 Console.WriteLine();
                 Console.WriteLine("[1] - Novo produto na lista");
                 Console.WriteLine("[2] - Exibir lista");
@@ -23,10 +23,15 @@ namespace Wishlist
                 char opc = char.Parse(Console.ReadLine());
                 if (opc == '1')
                 {
-                    Produto produto = controller.MenuCadastrarProduto();
-                    if (produto != null)
+                    bool exec1 = true;
+                    while (exec1)
                     {
-                        lista.AdicionarProduto(produto);
+                        Produto produto = controller.MenuCadastrarProduto();
+                        if (produto != null)
+                        {
+                            lista.AdicionarProduto(produto);
+                            exec1 = controller.CadastrarOutroProduto();
+                        }
                     }
                 }
                 else if (opc == '2')
@@ -41,16 +46,10 @@ namespace Wishlist
                 {
                     Console.Clear();
                     Console.WriteLine("DIGITE UMA OPÇÃO VÁLIDA!");
+                    Console.WriteLine("Aperte qualquer tecla para voltar ao menu");
                     Console.ReadLine();
                 }
-            }
-            
+            }   
         }
-        static void MenuCadastar()
-        {
-            Console.WriteLine();
-        }
-
-
     }
 }

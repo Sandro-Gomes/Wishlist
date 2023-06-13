@@ -27,31 +27,45 @@ namespace Wishlist
                 Console.WriteLine();
                 Console.Write("Digite o valor MÍNIMO que deseja gastar: ");
                 double valorMin = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-                Console.WriteLine();
-                Console.Write("Digite o valor MÁXIMO que deseja gastar: ");
-                double ValorMax = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                
+                double valorMax = 0; //Verificação de contradição (valorMin >= valorMax)
+                while (valorMax == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.Write("Digite o valor MÁXIMO que deseja gastar: ");
+                    valorMax = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    if (valorMax < valorMin)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Valor máximo deve ser maior ou igual ao valor mínimo!");
+                        Console.WriteLine("Aperte qualquer tecla para corrigir o valor");
+                        Console.ReadLine();
+                        valorMax = 0;
+                    }
+                }
                 Console.Clear();
 
-                Produto produto = new Produto(descricao, valorMin, ValorMax);
+                Produto produto = new Produto(descricao, valorMin, valorMax);
 
                 Console.Clear();
                 Console.WriteLine("(=====||Cadastro de Item||=====) ");
                 Console.WriteLine();
                 Console.WriteLine("Produto: " + produto);
                 Console.WriteLine();
-                Console.WriteLine("Deseja alterar? (s/n): ");
+                Console.Write("Deseja alterar? (s/n): ");
                 char opc = char.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 if (opc == 'n' || opc == 'N')
                 {
+                    Console.Clear() ;
                     Console.WriteLine("Produto cadastrado com sucesso!");
                     exec = false;
                     return produto;
                 }
                 else if (opc == 's' || opc == 'S')
-                {
-
+                {                   
                 }
                 else
                 {
@@ -154,6 +168,25 @@ namespace Wishlist
                     exec = false;
                 }
             }
+        }
+
+        public bool CadastrarOutroProduto()
+        {
+            Console.WriteLine();
+            Console.Write("Deseja adicionar um novo produto? (s/n) ");
+            char opc = char.Parse(Console.ReadLine());
+            Console.WriteLine();
+            if (opc == 's' || opc == 'S')
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Retornando ao Menu Inicial");
+                Console.ReadLine();
+                return false;
+            }
+
         }
     }
 
