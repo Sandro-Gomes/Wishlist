@@ -1,7 +1,4 @@
 # Wishlist
-  
-  
-Wishlist personalizada.  
 
 Sobre o programa:  
 
